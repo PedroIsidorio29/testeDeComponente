@@ -1,64 +1,76 @@
 <template>
-  <div >
-    
-    <DPMGInputText v-model="testeTexto" nome="TEXT" obrigatorio errors="teste"/>
-    <DPMGInputDateRange v-model="testeRange" nome="RANGE DATE" obrigatorio />
-    <DPMGInputDate v-model="testeDate" nome="DATE" obrigatorio />
-    <DPMGInputNumber v-model="testeNumber" nome="NUMBER" obrigatorio />
-    <DPMGInputSelect v-model="testeSelect" nome="SELECT" obrigatorio :valores="[
-      { value: 1, description: 'Teste opção' },
-      { value: 2, description: 'Teste opção1' },
-      { value: 3, description: 'Teste opção2' },
-      { value: 4, description: 'Teste opção3' }, 
-      { value: 5, description: 'Teste opção4' },
+  <div class="row q-mt-xl">
+
+    <div class="col-9">
+      <DPMGInputText v-model="texto" nome="TEXT" obrigatorio :errors="errors.texto" />
+    </div>
+
+    <DPMGInputDateRange v-model="rangeDate" nome="RANGE DATE" obrigatorio />
+
+    <div class="col-6">
+      <DPMGInputDate v-model="date" nome="DATE" obrigatorio />
+    </div>
+
+    <DPMGInputNumber v-model="number" nome="NUMBER" obrigatorio />
+
+    <DPMGInputSelect v-model="select" nome="SELECT" obrigatorio :valores="[
+      { value: 1, description: 'Opção1' },
+      { value: 2, description: 'Opção2' },
+      { value: 3, description: 'Opção3' },
+      { value: 4, description: 'Opção4' },
+      { value: 5, description: 'Opção5' },
     ]" />
 
-</div>
+  </div>
 
-<div class="row q-mx-md">
-  <p class="col-12">
-    TEXTO  -  {{ testeTexto }} 
-  </p>
-  <p class="col-12">
-    RANGE  -  {{testeRange}} 
-  </p>
-  <p class="col-12">
-    DATE  -  {{ testeDate }} 
-  </p>
-  <p class="col-12">
-    NUMBER  -  {{ testeNumber }} 
-  </p>
-  <p class="col-12">
-    SELECT  -  {{ testeSelect}}
-  </p>
+  <div class="row q-mx-md">
+    <p class="col-12">
+      TEXTO - {{ texto }}
+    </p>
+    <p class="col-12">
+      RANGE - {{ rangeDate }}
+    </p>
+    <p class="col-12">
+      DATE - {{ date }}
+    </p>
+    <p class="col-12">
+      NUMBER - {{ number }}
+    </p>
+    <p class="col-12">
+      SELECT - {{ select }}
+    </p>
 
-</div>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { 
-  DPMGInputText, 
-  DPMGInputSelect, 
-  DPMGInputDateRange, 
-  DPMGInputDate, 
-  DPMGInputNumber 
+import {
+  DPMGInputText,
+  DPMGInputSelect,
+  DPMGInputDateRange,
+  DPMGInputDate,
+  DPMGInputNumber
 } from "dpmg-ui-kit";
 import { onMounted, ref } from "vue";
+import { useUserForm } from '@/stores/forms/teste.form'
+import { storeToRefs } from "pinia";
 
-const testeTexto = ref<any>('')
-const testeRange = ref<any>('')
-const testeDate = ref<any>('')
-const testeNumber = ref<any>('')
-const testeSelect = ref<any>('')
+const form = useUserForm()
+const {
+  texto,
+  rangeDate,
+  date,
+  number,
+  select,
+  errors
+} = storeToRefs(useUserForm())
 
 onMounted(() => {
 
-testeTexto.value = 'TESTE'
-testeRange.value = { from: "2026/01/08", to: "2026/01/22" }
-testeDate.value = "2026/01/08"
-testeNumber.value = 654654
-testeSelect.value = 1
+  form.setFieldValue('texto', 'TESTE')
+  rangeDate.value = { from: "2026/01/08", to: "2026/01/22" }
+  date.value = "2026/01/08"
+  number.value = '654654'
+  select.value = '1'
 })
 </script>
-
-<style scoped></style>
