@@ -1,0 +1,211 @@
+@import './_quasar-variables.sass';
+
+#app {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scrollbar-width: thin;
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background-color: #CDCDCD;
+  border-left: 0.5px solid #909090ff;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: $accent;
+}
+
+input[type='date'] {
+  &::-webkit-calendar-picker-indicator {
+    height: 24px;
+    width: 24px;
+  }
+}
+
+input[type='time'] {
+  &::-webkit-calendar-picker-indicator {
+    height: 24px;
+    width: 24px;
+  }
+
+  * {
+    &::-webkit-scrollbar-track {
+      background-color: $positive;
+    }
+
+    &::-webkit-scrollbar {
+      width: 10px;
+      background-color: $positive;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: $accent;
+    }
+  }
+}
+
+.fade {
+  &-enter-active {
+    transition: opacity 0.5s ease;
+  }
+
+  &-leave-active {
+    @extend .fade-enter-active;
+  }
+
+  &-enter-from {
+    opacity: 0;
+  }
+
+  &-leave-to {
+    opacity: 0;
+  }
+}
+
+.max-w-100px {
+  max-width: 100px !important;
+}
+
+.border-inset-accent {
+  box-shadow: inset 0 -1px 0 $accent;
+}
+
+.bg-gray-header {
+  background: #d3d2d2 !important;
+}
+.text-gray-header {
+  color: #686868 !important;
+}
+
+.pagina-title {
+  font-size: 28px !important;
+}
+
+.pagina-sub-title {
+  font-size: 20px !important;
+  margin-left: 25px;
+}
+.pagina-acao {
+  color: #686868;
+  font-weight: regular;
+  font-size: 20px; 
+}
+
+.q-field--readonly {
+  .q-field__native,
+  .q-field__input {
+    cursor: not-allowed !important;
+  }
+}
+
+.q-select--with-chips {
+  .q-field__native {
+    padding-bottom: 3px;
+  }
+}
+
+.q-badge-lg {
+  font-size: 15px;
+  line-height: 1.6em;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.mt-20px {
+  margin-top: 20px;
+}
+
+.w-350px {
+  width: 350px;
+  max-width: 100%;
+}
+
+.q-tree__node--selected {
+  font-weight: bold;
+}
+
+.documento-pasta-funcional-img {
+  width: 80%;
+  height: auto;
+}
+
+.dpmg-card {
+  transition: scale 0.3s;
+
+  &:hover {
+    scale: (0.97);
+    background-color: rgba($positive, 0.3);
+    cursor: pointer;
+  }
+
+  &.selected {
+    border: $primary solid 2px;
+    box-shadow: none;
+  }
+}
+
+.q-expansion-item  .q-item__label, .q-toolbar[role=toolbar] {
+  font-weight: bold;
+}
+
+.on-left {
+  margin-right: 6px;
+}
+
+.on-right {
+  margin-left: 6px;
+}
+
+.q-table th {
+  font-weight: 700;
+}
+
+.q-btn:not(.q-btn--round) > .q-btn__content > .q-icon {
+  font-size: 14px;
+  margin-top: 2px;
+}
+
+//MDS
+.mds-page-padding {
+  padding-block: 32px;
+}
+
+.mds-color{
+  color: $mds-text
+}
+
+// MDS - paddings
+.mds-padding-inline {
+  padding-inline: $mds-size-33;
+}
+
+$sizes: $mds-size-23, $mds-size-28, $mds-size-32, $mds-size-33, $mds-size-36, $mds-size-43;
+@each $size in $sizes {
+  .mds-padding-block-#{$size} {
+    padding-block: #{$size}px;  
+  }
+}
+
+// MDS - margins
+.mds-margin-inline {
+  margin-inline: $mds-size-33;
+}
+
+@each $size in $sizes {
+  .mds-margin-block-#{$size} {
+    margin-block: #{$size}px;  
+  }
+}
+
+.mds-height-36 {
+  height: $mds-size-36;
+}
+
+.mds-spacing-input {
+  margin-right: 33px;
+}

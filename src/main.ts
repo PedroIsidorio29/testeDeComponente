@@ -1,7 +1,7 @@
 import { Quasar } from "quasar";
 import { quasar_options } from "./plugins/quasar";
 import i18n from './plugins/i18n';
-
+import "@/styles/global.scss"
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 // import DpmgUIKit from "dpmg-ui-kit";
