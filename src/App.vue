@@ -11,41 +11,43 @@
 
     <DPMGInputNumber v-model="number" nome="NUMBER" obrigatorio />
 
-    <DPMGInputSelect v-model="select" nome="SELECT" obrigatorio :valores="[
-      { value: 1, description: 'Opção1' },
-      { value: 2, description: 'Opção2' },
-      { value: 3, description: 'Opção3' },
-      { value: 4, description: 'Opção4' },
-      { value: 5, description: 'Opção5' },
+    <DPMGInputSelect v-model="select" nome="SELECT" obrigatorio :optionList="[
+      { valor: 1, descricao: 'Opção1' },
+      { valor: 2, descricao: 'Opção2' },
+      { valor: 3, descricao: 'Opção3' },
+      { valor: 4, descricao: 'Opção4' },
+      { valor: 5, descricao: 'Opção5' },
     ]" />
 
-    <q-btn
-      label="teste"
-      color="primary"
-      type="submit"
-      size="sm"
-    />
+    <q-btn label="teste" color="primary" type="submit" size="sm" @click="() => open = true" />
   </div>
 
   <div class="row q-mx-md">
-    {{ teste }}
     <p class="col-12">
-      TEXTO - {{ texto }}
+      TEXTO - {{ computedTexto }}
     </p>
     <p class="col-12">
-      RANGE - {{ rangeDate }}
+      RANGE - {{ computedRangeDate }}
     </p>
     <p class="col-12">
-      DATE - {{ date }}
+      DATE - {{ computedDate }}
     </p>
     <p class="col-12">
-      NUMBER - {{ number }}
+      NUMBER - {{ computedNumber }}
     </p>
     <p class="col-12">
-      SELECT - {{ select }}
+      SELECT - {{ computedSelect }}
     </p>
 
   </div>
+  <DPMGBaseModal v-model="open" @close="onClose">
+    <modal-teste-component />
+asd
+    <template #actions>
+      <q-btn flat label="Cancelar" @click="open = false" />
+      <q-btn color="negative" label="Confirmar" @click="confirm" />
+    </template>
+  </DPMGBaseModal>
 </template>
 
 <script setup lang="ts">
@@ -54,35 +56,46 @@ import {
   DPMGInputSelect,
   DPMGInputDateRange,
   DPMGInputDate,
-  DPMGInputNumber
+  DPMGInputNumber,
+  DPMGBaseModal
 } from "dpmg-ui-kit";
-import { computed, onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import { useUserForm } from '@/stores/forms/teste.form'
+import ModalTesteComponent from '@/components/modalTesteComponent.vue'
 import { storeToRefs } from "pinia";
 
+const open = ref(false)
+
 const form = useUserForm()
+
 const {
   texto,
   rangeDate,
   date,
   number,
   select,
+  computedDate,
+  computedNumber,
+  computedRangeDate,
+  computedSelect,
+  computedTexto,
   errors
 } = storeToRefs(useUserForm())
 
-const teste = computed(() => {
-  console.log('texto', texto.value);
-  console.log('rangeDate', rangeDate.value);
-  console.log('date', date.value);
-  console.log('number', number.value);
-  console.log("select", select.value);
-})
+function confirm() {
+  console.log('Confirmado')
+  open.value = false
+}
+
+function onClose() {
+  console.log('Modal fechado')
+}
 
 onMounted(() => {
   form.setFieldValue('texto', 'TESTE')
   rangeDate.value = { from: "2026/01/08", to: "2026/01/22" }
   date.value = "2026/01/08"
   number.value = '654654'
-  select.value = '1'
+  // select.value = '1'
 })
 </script>
