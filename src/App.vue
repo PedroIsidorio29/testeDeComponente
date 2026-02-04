@@ -19,7 +19,8 @@
       { valor: 5, descricao: 'Opção5' },
     ]" />
 
-    <q-btn label="teste" color="primary" type="submit" size="sm" @click="() => open = true" />
+    <q-btn label="abrir MODAL" color="primary" type="submit" size="sm" @click="() => abrir = true" />
+    <q-btn label="abrir MODAL VIA COMPOSABLES" color="primary" type="submit" size="sm" @click="abrirModal" />
   </div>
 
   <div class="row q-mx-md">
@@ -40,12 +41,11 @@
     </p>
 
   </div>
-  <DPMGBaseModal v-model="open" @close="onClose">
+  <DPMGBaseModal v-model="abrir" @close="onClose" title="STI">
     <modal-teste-component />
-asd
     <template #actions>
-      <q-btn flat label="Cancelar" @click="open = false" />
-      <q-btn color="negative" label="Confirmar" @click="confirm" />
+      <q-btn flat label="Cancelar" @click="abrir = false" />
+      <q-btn color="primary" label="Confirmar" @click="confirm" />
     </template>
   </DPMGBaseModal>
 </template>
@@ -57,16 +57,17 @@ import {
   DPMGInputDateRange,
   DPMGInputDate,
   DPMGInputNumber,
-  DPMGBaseModal
+  DPMGBaseModal,
+  useDPMGModal,
 } from "dpmg-ui-kit";
-import { onMounted, ref } from "vue";
-import { useUserForm } from '@/stores/forms/teste.form'
 import ModalTesteComponent from '@/components/modalTesteComponent.vue'
+import { useUserForm } from '@/stores/forms/teste.form'
+import { onMounted, ref } from "vue";
 import { storeToRefs } from "pinia";
 
-const open = ref(false)
-
+const abrir = ref(false)
 const form = useUserForm()
+const { open } = useDPMGModal()
 
 const {
   texto,
@@ -84,11 +85,25 @@ const {
 
 function confirm() {
   console.log('Confirmado')
-  open.value = false
+  abrir.value = false
 }
 
 function onClose() {
   console.log('Modal fechado')
+}
+
+
+function abrirModal() {
+  open<string>({
+    title: 'DEFENDOR (A)',
+    component: ModalTesteComponent,
+    persistent:true,
+ 
+    cancel:{
+      label:"cancelar",
+    
+    }
+  })
 }
 
 onMounted(() => {
@@ -96,6 +111,6 @@ onMounted(() => {
   rangeDate.value = { from: "2026/01/08", to: "2026/01/22" }
   date.value = "2026/01/08"
   number.value = '654654'
-  // select.value = '1'
+  select.value = '1'
 })
 </script>
