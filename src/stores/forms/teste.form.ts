@@ -16,23 +16,23 @@ export const useUserForm = defineStore('userForm', () => {
   const [select] = defineField('select')
 
   const computedTexto = computed(() => {
-    console.log('texto', texto.value);
+    // console.log('texto', texto.value);
     return texto.value;
   })
   const computedRangeDate = computed(() => {
-    console.log('rangeDate', rangeDate.value);
+    // console.log('rangeDate', rangeDate.value);
     return rangeDate.value;
   })
   const computedDate = computed(() => {
-    console.log('date', date.value);
+    // console.log('date', date.value);
     return date.value;
   })
   const computedNumber = computed(() => {
-    console.log('number', number.value);
+    // console.log('number', number.value);
     return number.value;
    })
   const computedSelect = computed(() => {
-    console.log("select", select.value);
+    // console.log("select", select.value);
     return select.value;
   })
 
