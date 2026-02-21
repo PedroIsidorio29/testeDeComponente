@@ -37,7 +37,7 @@
   </div>
 
   <div class="row">
-    <div class="col-2">
+    <div class="col-6">
       <DPMGInputSelect v-model="select" nome="SELECT" :optionList="[
         { valor: 1, descricao: 'Opção1 asdfsdf asdfsdf asdfsdf asdfsdf asdfsdf asdfsdf ' },
         { valor: 2, descricao: 'Opção2' },

@@ -5,7 +5,6 @@ import vue from '@vitejs/plugin-vue'
 import { defineConfig } from 'vite'
 import path from 'path'
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [
     vue({
@@ -16,12 +15,22 @@ export default defineConfig({
       sassVariables: '@/styles/_quasar-variables.sass',
     }),
   ],
+
+  css: {
+    preprocessorOptions: {
+      scss: {},
+      sass: {}
+    }
+  },
+
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
-      'dpmg-ui-kit': path.resolve(__dirname, 'C:/DEV/DPMG/dpmg-ui-kit/src')
+      //__ ALTERAR DE ACORDO COM A MAQUINA __//
+      'dpmg-ui-kit': path.resolve(__dirname, 'D:/DEV/DPMG/dpmg-ui-kit/src')
     },
   },
+
   optimizeDeps: {
     include: ['quasar'],
   }
