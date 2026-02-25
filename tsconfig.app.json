@@ -8,7 +8,8 @@
       "@/*": ["./src/*"],
       //__ ALTERAR DE ACORDO COM A MAQUINA __//
       "dpmg-ui-kit": [
-        "D:/DEV/DPMG/dpmg-ui-kit/src/index.ts"
+        // "D:/DEV/DPMG/dpmg-ui-kit/src/index.ts"
+        "C:/DEV/DPMG/dpmg-ui-kit/src/index.ts"
       ]
     }
   },

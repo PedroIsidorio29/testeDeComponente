@@ -27,7 +27,8 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
       //__ ALTERAR DE ACORDO COM A MAQUINA __//
-      'dpmg-ui-kit': path.resolve(__dirname, 'D:/DEV/DPMG/dpmg-ui-kit/src')
+      // 'dpmg-ui-kit': path.resolve(__dirname, 'D:/DEV/DPMG/dpmg-ui-kit/src') //CASA
+      'dpmg-ui-kit': path.resolve(__dirname, 'C:/DEV/DPMG/dpmg-ui-kit/src') //DPMG
     },
   },
 
